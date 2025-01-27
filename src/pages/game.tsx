@@ -120,31 +120,32 @@ export function GamePage() {
     } else {
       // Check if the quiz is completed and results have not been saved
       if (!isQuizCompleted) {
-          saveQuizHistory();
-          setIsQuizCompleted(true); // Set the quiz as completed
-          setIsTimerRunning(false); // Stop the timer
-      }
+        setIsQuizCompleted(true);
+        setIsTimerRunning(false);
+        saveQuizHistory(score + 1);  // Pass the updated score
+    }
       setTimeLeft(0); 
   }
   };
 
-  const saveQuizHistory = () => {
+  const saveQuizHistory = (finalScore: number) => {
     const existingHistory = JSON.parse(
-      localStorage.getItem("quizHistory") || "[]"
+        localStorage.getItem("quizHistory") || "[]"
     );
+
     const currentPlay = {
-      timestamp: new Date().toISOString(),
-      score: score,
-      totalQuestions: questions.length,
-      category: settings.category,
-      difficulty: settings.difficulty,
-      questionType: settings.questionType,
+        timestamp: new Date().toISOString(),
+        score: finalScore,  // Use finalScore instead of state
+        totalQuestions: questions.length,
+        category: settings.category,
+        difficulty: settings.difficulty,
+        questionType: settings.questionType,
     };
 
     const updatedHistory = [...existingHistory, currentPlay];
 
     localStorage.setItem("quizHistory", JSON.stringify(updatedHistory));
-  };
+};
 
   const handleRestart = () => {
     navigate("/home");
@@ -265,7 +266,6 @@ export function GamePage() {
         percentageScore={(score / questions.length) * 100} 
       />
       )}
-
       <Rank modalInfo={rankModalInfo} setModalInfo={setRankModalInfo} />
       </ErrorBoundary>
     </div>

@@ -122,7 +122,7 @@ export function GamePage() {
       if (!isQuizCompleted) {
         setIsQuizCompleted(true);
         setIsTimerRunning(false);
-        saveQuizHistory(score + 1);  // Pass the updated score
+        saveQuizHistory(score);  // Pass the updated score
     }
       setTimeLeft(0); 
   }

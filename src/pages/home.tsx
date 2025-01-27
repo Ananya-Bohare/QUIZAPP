@@ -14,7 +14,7 @@ const Home = () => {
   const location = useLocation();
   const [category, setCategory] = useState(0);
   const [numberOfQuestions, setNumberOfQuestions] = useState(5);
-  const [difficulty, setDifficulty] = useState("any");
+  const [difficulty, setDifficulty] = useState("easy");
   const [type, setType] = useState("any");
   const navigate = useNavigate();
   const [firstAnimation, setFirstAnimation] = useState(1);

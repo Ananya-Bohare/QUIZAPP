@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import ErrorBoundary from './ErrorBoundary';
+
 
 interface TimerProps {
   timeLeft: number;
@@ -32,9 +34,11 @@ const Timer: React.FC<TimerProps> = ({ timeLeft , isQuizCompleted}) => {
   }, [seconds]);
 
   return (
+    <ErrorBoundary>
     <div className="text-red-600 text-xl">
       {seconds} seconds
     </div>
+    </ErrorBoundary>
   );
 };
 

@@ -1,7 +1,9 @@
 import React from 'react';
+import ErrorBoundary from './ErrorBoundary';
 
 const ProgressBar: React.FC<{ progress: number }> = ({ progress }) => {
   return (
+    <ErrorBoundary>  
     <div className="relative h-4 bg-gray-400 rounded-full overflow-hidden"
     style={{ width: '100%', maxWidth: '900px' }}
     >
@@ -25,6 +27,7 @@ const ProgressBar: React.FC<{ progress: number }> = ({ progress }) => {
         {`${Math.min(progress, 100).toFixed(0)}%`}
       </div>
     </div>
+    </ErrorBoundary>
   );
 };
 

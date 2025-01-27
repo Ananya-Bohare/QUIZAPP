@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Rank } from "./rank";
+import ErrorBoundary from './ErrorBoundary';
 
 interface ResultProps {
   finalScore: number;
@@ -9,7 +10,7 @@ interface ResultProps {
   percentageScore: number;
 }
 
-const Result: React.FC<ResultProps> = ({
+const Result: React.FC<ResultProps> = React.memo(({
   finalScore,
   totalQuestions,
   incorrectAnswers,
@@ -27,6 +28,7 @@ const Result: React.FC<ResultProps> = ({
   };
 
   return (
+    <ErrorBoundary>
     <div className="absolute inset-0 flex justify-center items-center bg-black bg-opacity-70 backdrop-blur-sm">
       <div className="relative z-10 flex flex-col items-center bg-white p-8 rounded-2xl shadow-2xl max-w-sm w-full transform transition-all duration-300 scale-105 hover:scale-100">
         {/* Title */}
@@ -95,7 +97,8 @@ const Result: React.FC<ResultProps> = ({
         <Rank modalInfo={isRankModalOpen} setModalInfo={setIsRankModalOpen} />
       </div>
     </div>
+    </ErrorBoundary>
   );
-};
+});
 
 export default Result;

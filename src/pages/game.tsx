@@ -9,6 +9,7 @@ import { Rank } from "../components/rank";
 import ProgressBar from "../components/ProgressBar";
 import Timer from "../components/Timer";
 import Result from "../components/Result";
+import ErrorBoundary from '../components/ErrorBoundary';
 
 
 
@@ -121,6 +122,7 @@ export function GamePage() {
       if (!isQuizCompleted) {
           saveQuizHistory();
           setIsQuizCompleted(true); // Set the quiz as completed
+          setIsTimerRunning(false); // Stop the timer
       }
       setTimeLeft(0); 
   }
@@ -176,7 +178,7 @@ export function GamePage() {
           </button>
         </div>
       </div>
-
+      <ErrorBoundary>
 <div className="flex justify-between items-center w-full mt-4"
     style={{ width: '100%', maxWidth: '900px' }}>
   <div className="text-white text-xl font-bold">
@@ -265,6 +267,7 @@ export function GamePage() {
       )}
 
       <Rank modalInfo={rankModalInfo} setModalInfo={setRankModalInfo} />
+      </ErrorBoundary>
     </div>
   );
 }

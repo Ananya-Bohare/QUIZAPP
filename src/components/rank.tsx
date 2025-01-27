@@ -23,6 +23,7 @@ export function Rank({ modalInfo, setModalInfo }: RankProps) {
       const storedHistory = JSON.parse(
         localStorage.getItem("quizHistory") || "[]"
       );
+      console.log("Retrieved quiz history:", storedHistory);
       setLastGames(storedHistory);
     }
   }, [modalInfo]);
